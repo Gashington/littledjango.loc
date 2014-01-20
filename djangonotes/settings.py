@@ -30,12 +30,15 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = (
+    'suit',
+    'ckeditor',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'applications.blog',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -47,6 +50,15 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'django.contrib.auth.context_processors.auth',
+    'django.core.context_processors.debug',
+    'django.core.context_processors.i18n',
+    'django.core.context_processors.request',
+    'django.core.context_processors.static',
+    'django.contrib.messages.context_processors.messages',
+)
+TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates')]
 ROOT_URLCONF = 'djangonotes.urls'
 
 WSGI_APPLICATION = 'djangonotes.wsgi.application'
@@ -67,7 +79,7 @@ DATABASES = {
 # Internationalization
 # https://docs.djangoproject.com/en/1.6/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ru-RU'
 
 TIME_ZONE = 'UTC'
 
@@ -80,5 +92,14 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
-STATIC_ROOT = 'djangonotes/files/static'
+STATIC_ROOT = '/files/static'
 STATIC_URL = '/static/'
+
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'Full',
+        'height': 300,
+        'width': 500,
+    },
+}
+CKEDITOR_UPLOAD_PATH = "/var/www/djangonotes.loc/files/media/uploads"

@@ -1,0 +1,19 @@
+{% extends "index.html" %}
+
+{% block content %}
+    {% if all_posts_list %}
+        {% for post in all_posts_list %}
+            <section>
+                <h2>{{ post.title }}</h2>
+                <article>{{ post.content|safe }}</article>
+                <div>{{ post.category }}</div>
+                {% for tag in post.tags.all %}
+                    <span>{{ tag.title }}</span>
+                {% endfor %}
+
+            </section>
+        {% endfor %}
+    {% else %}
+        <p>Здесь пока еще нет записей</p>
+    {% endif %}
+{% endblock %}
